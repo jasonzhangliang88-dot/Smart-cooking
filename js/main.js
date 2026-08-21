@@ -128,7 +128,7 @@
       form.reset();
 
       // Optionally open mail client (no-op if blocked)
-      window.open("mailto:info@dongji-smart.com?subject=" + subject + "&body=" + body, "_blank");
+      window.open("mailto:djengineer@metalwork.cc?subject=" + subject + "&body=" + body, "_blank");
     });
   }
 

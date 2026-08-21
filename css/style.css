@@ -473,7 +473,7 @@ ul { list-style: none; }
 .wechat-float {
   position: fixed;
   right: 24px;
-  bottom: 24px;
+  bottom: 124px;
   z-index: 99;
   width: 130px;
   cursor: pointer;
@@ -523,7 +523,7 @@ ul { list-style: none; }
 .wechat-close:hover { color: var(--text); }
 
 @media (max-width: 560px) {
-  .wechat-float { width: 110px; right: 16px; bottom: 16px; }
+  .wechat-float { width: 110px; right: 16px; bottom: 116px; }
 }
 
 /* ---------- Mobile nav overlay ---------- */
