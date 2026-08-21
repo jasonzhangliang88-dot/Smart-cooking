@@ -180,7 +180,7 @@ ul { list-style: none; }
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background-image: url('../images/hero-bg.png');
+  background-image: url('../images/hero-bg.jpg');
   background-size: cover;
   background-position: center right;
   z-index: 0;
