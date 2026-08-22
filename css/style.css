@@ -478,7 +478,15 @@ ul { list-style: none; }
 .about-copy p { color: var(--text-dim); margin-bottom: 16px; font-size: 15.5px; }
 .about-list { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 28px; }
 .about-list li { color: var(--text); font-size: 15px; }
-.about-visual img { border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.about-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.about-visual { overflow: hidden; border-radius: var(--radius); }
 
 /* ---------- CTA banner ---------- */
 .cta-banner {
