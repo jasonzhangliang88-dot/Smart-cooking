@@ -36,18 +36,13 @@
     });
   }
   if (overlay) overlay.addEventListener("click", closeNav);
-  nav.querySelectorAll("a").forEach(function (a) {
-    a.addEventListener("click", closeNav);
-  });
-
-  /* ---- Language switch (visual demo only) ---- */
-  var langBtns = document.querySelectorAll(".lang-btn");
-  langBtns.forEach(function (b) {
-    b.addEventListener("click", function () {
-      langBtns.forEach(function (x) { x.classList.remove("active"); });
-      b.classList.add("active");
+  if (nav) {
+    nav.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", closeNav);
     });
-  });
+  }
+
+  /* ---- Language switch active state is set server-side/HTML; no JS needed ---- */
 
   /* ---- Reveal on scroll ---- */
   var revealEls = document.querySelectorAll(
@@ -124,28 +119,46 @@
     });
   }
 
-  /* ---- WeChat float modal ---- */
+  /* ---- WhatsApp float modal ---- */
   var wechatFloat = document.getElementById("wechatFloat");
   var wechatModal = document.getElementById("wechatModal");
   var wechatClose = document.getElementById("wechatClose");
+  var lastFocusedElement = null;
   function openWechat(e) {
     if (e) e.preventDefault();
     if (wechatModal) {
+      lastFocusedElement = document.activeElement;
       wechatModal.classList.add("show");
+      wechatModal.removeAttribute("inert");
       wechatModal.setAttribute("aria-hidden", "false");
+      if (wechatClose) wechatClose.focus();
     }
   }
   function closeWechat() {
     if (wechatModal) {
       wechatModal.classList.remove("show");
+      wechatModal.setAttribute("inert", "");
       wechatModal.setAttribute("aria-hidden", "true");
+      if (lastFocusedElement) lastFocusedElement.focus();
     }
   }
+  if (wechatModal) wechatModal.setAttribute("inert", "");
   if (wechatFloat) wechatFloat.addEventListener("click", openWechat);
+  if (wechatFloat) {
+    wechatFloat.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openWechat();
+      }
+    });
+  }
   if (wechatClose) wechatClose.addEventListener("click", closeWechat);
   if (wechatModal) {
     wechatModal.addEventListener("click", function (e) {
       if (e.target === wechatModal) closeWechat();
+    });
+    wechatModal.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeWechat();
     });
   }
 
