@@ -7,8 +7,9 @@
   <title>Dongji | Smart Cooking Robot OEM / ODM / JDM Contract Manufacturer</title>
   <meta name="description" content="Guangdong Dongji Intelligent Equipment Co., Ltd. — a professional OEM, ODM and JDM contract manufacturer for smart cooking robots. 14 years of manufacturing, exported to 50+ countries, delivering finished robots under your brand from concept to mass production." />
   <link rel="icon" type="image/png" href="images/logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preload" href="images/hero-bg.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/style.css"></noscript>
 </head>
 <body>
 
@@ -49,7 +50,12 @@
 
   <!-- Hero -->
   <section class="hero" id="home">
-    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-bg" aria-hidden="true">
+      <picture>
+        <source srcset="images/hero-bg.webp" type="image/webp">
+        <img src="images/hero-bg.jpg" alt="" width="1920" height="700" fetchpriority="high" decoding="async" loading="eager">
+      </picture>
+    </div>
     <div class="container hero-inner">
       <span class="eyebrow">OEM / ODM / JDM from Concept to Mass Production</span>
       <h1>Build Your Own<br><span class="accent">Cooking Robot.</span></h1>
