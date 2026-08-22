@@ -501,19 +501,29 @@ ul { list-style: none; }
 .footer-bottom .container { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .footer-bottom span { font-size: 12.5px; color: var(--text-faint); }
 
-/* ---------- WeChat float ---------- */
+/* ---------- WhatsApp float ---------- */
 .wechat-float {
   position: fixed;
   right: 24px;
   bottom: 124px;
   z-index: 99;
-  width: 130px;
+  width: 120px;
   cursor: pointer;
-  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.4));
-  transition: transform 0.25s var(--ease);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 10px;
+  background: rgba(20,22,26,0.92);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s;
 }
-.wechat-float img { width: 100%; display: block; border-radius: 8px; }
-.wechat-float:hover { transform: translateY(-4px); }
+.wechat-float .whatsapp-icon { width: 42px; height: 42px; fill: #25D366; flex-shrink: 0; }
+.wechat-float span { font-size: 13px; font-weight: 600; line-height: 1.25; text-align: center; letter-spacing: -0.2px; }
+.wechat-float:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
 
 .wechat-modal {
   position: fixed; inset: 0;
@@ -555,7 +565,9 @@ ul { list-style: none; }
 .wechat-close:hover { color: var(--text); }
 
 @media (max-width: 560px) {
-  .wechat-float { width: 110px; right: 16px; bottom: 116px; }
+  .wechat-float { width: 104px; right: 16px; bottom: 116px; padding: 10px 8px; }
+  .wechat-float .whatsapp-icon { width: 36px; height: 36px; }
+  .wechat-float span { font-size: 12px; }
 }
 
 /* ---------- Mobile nav overlay ---------- */
