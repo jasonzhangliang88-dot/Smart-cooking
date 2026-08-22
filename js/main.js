@@ -69,15 +69,21 @@
     revealEls.forEach(function (el) { el.classList.add("show"); });
   }
 
-  /* ---- Inquiry form (static: show success message) ---- */
+  /* ---- Inquiry form (POST to Basin backend) ---- */
   var form = document.getElementById("inquiryForm");
   if (form) {
     var isEN = (document.documentElement.getAttribute("lang") || "zh").toLowerCase().indexOf("en") === 0;
+    var BASIN_ENDPOINT = "https://usebasin.com/f/b1f6dc97f794";
+
+    // Reusable status message (created once, toggled on each submit)
+    var msg = document.createElement("div");
+    msg.className = "form-success";
+    form.parentNode.insertBefore(msg, form);
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      // Simple required validation
+      // Required-field validation
       var required = form.querySelectorAll("[required]");
       var ok = true;
       required.forEach(function (f) {
@@ -86,49 +92,35 @@
       });
       if (!ok) return;
 
-      // Build a mailto fallback so it actually reaches the factory
-      var data = new FormData(form);
-      var name = data.get("name") || "";
-      var company = data.get("company") || "";
-      var email = data.get("email") || "";
-      var country = data.get("country") || "";
-      var mode = data.get("mode") || "";
-      var message = data.get("message") || "";
+      var btn = form.querySelector('button[type="submit"]');
+      var originalLabel = btn ? btn.textContent : "";
+      if (btn) { btn.disabled = true; btn.textContent = isEN ? "Sending…" : "提交中…"; }
 
-      var subject, body;
-      if (isEN) {
-        subject = encodeURIComponent("Smart Cooking Robot Inquiry - " + company);
-        body = encodeURIComponent(
-          "Name: " + name + "\n" +
-          "Company / Brand: " + company + "\n" +
-          "Email: " + email + "\n" +
-          "Country / Region: " + country + "\n" +
-          "Engagement model: " + mode + "\n" +
-          "Requirements: " + message
-        );
-      } else {
-        subject = encodeURIComponent("智能炒菜机代工询盘 - " + company);
-        body = encodeURIComponent(
-          "姓名: " + name + "\n" +
-          "公司/品牌: " + company + "\n" +
-          "邮箱: " + email + "\n" +
-          "国家/地区: " + country + "\n" +
-          "合作模式: " + mode + "\n" +
-          "需求描述: " + message
-        );
-      }
-
-      // Show in-page confirmation
-      var success = document.createElement("div");
-      success.className = "form-success show";
-      success.textContent = isEN
-        ? "✓ Thank you. Your inquiry has been received — a Dongji consultant will contact you shortly."
-        : "✓ 已收到您的询盘，东吉项目顾问将尽快与您联系。";
-      form.parentNode.insertBefore(success, form);
-      form.reset();
-
-      // Optionally open mail client (no-op if blocked)
-      window.open("mailto:djengineer@metalwork.cc?subject=" + subject + "&body=" + body, "_blank");
+      fetch(BASIN_ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+      })
+      .then(function (res) {
+        if (res.ok) {
+          msg.className = "form-success show";
+          msg.textContent = isEN
+            ? "✓ Thank you. Your inquiry has been received — a Dongji consultant will contact you shortly."
+            : "✓ 已收到您的询盘，东吉项目顾问将尽快与您联系。";
+          form.reset();
+        } else {
+          throw new Error("Basin responded with " + res.status);
+        }
+      })
+      .catch(function () {
+        msg.className = "form-success show error";
+        msg.textContent = isEN
+          ? "✕ Sending failed. Please try again or email us at djengineer@metalwork.cc."
+          : "✕ 提交失败，请重试，或直接发邮件至 djengineer@metalwork.cc。";
+      })
+      .finally(function () {
+        if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
+      });
     });
   }
 

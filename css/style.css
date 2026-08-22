@@ -344,6 +344,11 @@ ul { list-style: none; }
   color: #6ee7a8; font-size: 14px; margin-bottom: 14px;
 }
 .form-success.show { display: block; }
+.form-success.error {
+  background: rgba(255,90,90,0.12);
+  border-color: rgba(255,90,90,0.4);
+  color: #ff9a9a;
+}
 
 /* ---------- Solutions ---------- */
 .solutions { background: var(--bg); }
