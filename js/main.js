@@ -110,8 +110,8 @@
       .catch(function () {
         msg.className = "form-success show error";
         msg.textContent = isEN
-          ? "✕ Sending failed. Please try again or email us at djengineer@metalwork.cc."
-          : "✕ 提交失败，请重试，或直接发邮件至 djengineer@metalwork.cc。";
+          ? "✕ Sending failed. Please try again or email us at jasonzhangliang88@gmail.com."
+          : "✕ 提交失败，请重试，或直接发邮件至 jasonzhangliang88@gmail.com。";
       })
       .finally(function () {
         if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
