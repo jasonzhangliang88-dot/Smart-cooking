@@ -64,11 +64,11 @@
     revealEls.forEach(function (el) { el.classList.add("show"); });
   }
 
-  /* ---- Inquiry form (POST to Basin backend) ---- */
+  /* ---- Inquiry form (POST to Formspree backend) ---- */
   var form = document.getElementById("inquiryForm");
   if (form) {
     var isEN = (document.documentElement.getAttribute("lang") || "zh").toLowerCase().indexOf("en") === 0;
-    var BASIN_ENDPOINT = "https://usebasin.com/f/b1f6dc97f794";
+    var FORM_ENDPOINT = "https://formspree.io/f/xwlezbrp";
 
     // Reusable status message (created once, toggled on each submit)
     var msg = document.createElement("div");
@@ -91,7 +91,7 @@
       var originalLabel = btn ? btn.textContent : "";
       if (btn) { btn.disabled = true; btn.textContent = isEN ? "Sending…" : "提交中…"; }
 
-      fetch(BASIN_ENDPOINT, {
+      fetch(FORM_ENDPOINT, {
         method: "POST",
         body: new FormData(form),
         headers: { "Accept": "application/json" }
@@ -104,7 +104,7 @@
             : "✓ 已收到您的询盘，东吉项目顾问将尽快与您联系。";
           form.reset();
         } else {
-          throw new Error("Basin responded with " + res.status);
+          throw new Error("Formspree responded with " + res.status);
         }
       })
       .catch(function () {
