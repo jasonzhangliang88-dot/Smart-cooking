@@ -459,9 +459,9 @@ ul { list-style: none; }
 .factory { background: var(--bg); }
 .factory-gallery {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 200px; gap: 16px;
+  gap: 16px;
 }
-.fg { overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line); }
+.fg { overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line); aspect-ratio: 4/3; }
 .fg img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
 .fg:hover img { transform: scale(1.08); }
 .factory-stats {
