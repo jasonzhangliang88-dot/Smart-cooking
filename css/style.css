@@ -538,7 +538,7 @@ ul { list-style: none; }
   box-shadow: 0 6px 18px rgba(0,0,0,0.35);
   transition: transform 0.25s var(--ease), box-shadow 0.25s;
 }
-.wechat-float .whatsapp-icon { width: 28px; height: 28px; fill: #25D366; flex-shrink: 0; }
+.wechat-float .whatsapp-icon { width: 28px; height: 28px; object-fit: contain; flex-shrink: 0; }
 .wechat-float span { font-size: 11px; font-weight: 600; line-height: 1.2; text-align: center; letter-spacing: -0.2px; }
 .wechat-float:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(0,0,0,0.45); }
 
