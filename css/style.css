@@ -128,6 +128,8 @@ ul { list-style: none; }
   gap: 20px;
 }
 .brand { display: flex; align-items: center; gap: 12px; }
+.brand a img,
+.brand img { height: 38px; width: auto; }
 .brand-logo { height: 38px; width: auto; }
 
 .main-nav { display: flex; align-items: center; gap: 26px; }
@@ -534,7 +536,7 @@ ul { list-style: none; }
   box-shadow: none;
   transition: transform 0.25s var(--ease);
 }
-.wechat-float .whatsapp-float-img { width: 114px; height: auto; display: block; }
+.wechat-float .whatsapp-float-img { width: 76px; height: auto; display: block; }
 .wechat-float:hover { transform: translateY(-4px); }
 
 .wechat-modal {
@@ -578,7 +580,7 @@ ul { list-style: none; }
 
 @media (max-width: 560px) {
   .wechat-float { right: 16px; bottom: 116px; }
-  .wechat-float .whatsapp-float-img { width: 96px; }
+  .wechat-float .whatsapp-float-img { width: 64px; }
 }
 
 /* ---------- Mobile nav overlay ---------- */
